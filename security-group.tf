@@ -6,7 +6,7 @@ resource "aws_security_group" "acesso-ssh" {
       from_port = 22
       to_port   = 22
       protocol  = "tcp"
-      cidr_blocks = ["201.17.110.192/32"]
+      cidr_blocks = var.cdirs_acesso_remoto
   }
 
   tags = {
@@ -29,7 +29,7 @@ resource "aws_security_group" "acesso-web" {
 }
 
 resource "aws_security_group" "acesso-ssh-us-east-2" {
-  provider = "aws.us-east-2"
+  provider = aws.us-east-2
   name = "acesso-ssh"
   description = "acesso-ssh"
 
@@ -37,7 +37,7 @@ resource "aws_security_group" "acesso-ssh-us-east-2" {
       from_port = 22
       to_port   = 22
       protocol  = "tcp"
-      cidr_blocks = ["201.17.110.192/32"]
+      cidr_blocks = var.cdirs_acesso_remoto
   }
 
   tags = {
@@ -45,7 +45,7 @@ resource "aws_security_group" "acesso-ssh-us-east-2" {
   }
 }
 resource "aws_security_group" "acesso-web-us-east-2" {
-    provider = "aws.us-east-2"
+    provider = aws.us-east-2
     name = "acesso-web"
     description = "acesso web a partir da instancia"
 
