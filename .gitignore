@@ -1,3 +1,4 @@
+*.token
 terraform1.pub
 .terraform
 *.tfstate
