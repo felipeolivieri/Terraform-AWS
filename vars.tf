@@ -15,4 +15,3 @@ variable "cdirs_acesso_remoto" {
 variable "key_name" {
     default = "terraform1"
 }
-
