@@ -20,6 +20,7 @@ resource "aws_instance" "dev" {
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh.id}", "${aws_security_group.acesso-web.id}"]
 }
 
+
 resource "aws_instance" "dev4" {
   ami = "ami-085925f297f89fce1"
   instance_type = "t2.micro"

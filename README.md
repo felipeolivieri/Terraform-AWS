@@ -31,9 +31,32 @@ terraform status
 terraform validate  
 terraform destroy  
 terraform destroy -target aws_s3_bucket.dev4
+terraform refresh
+terraform output
 
 
 Os comandos acima são mais que suficientes para provisionar qualquer ambiente em qualquer nuvem.
+
+Para remover recursos da infraestrutura, posso simplesmente apagar um resource do código e rodar um "terraform apply" aou ainda rodar um "terraform destroy -target tipo.nome" como no exemplo: terraform destroy -target aws_s3_bucket.dev4
+
+Como descobrir o ip publico das instâncias para acessar via ssh sem ter que acessar a console da aws?
+Criei um arquivo chamado outputs.tf e inclui o seguinte:
+
+output "ip_dev5" {
+    value = aws_instance.dev5.public_ip
+}
+
+coloquei este pedaço de código para cada uma das instâncias. 
+
+Para as instâncias que foram criadas de forma recursiva, utilizando o count, como fiz na dev0, dev1 e dev2, só consegui pegar o IP publico assim:
+
+output "ips_dev0-1-2" {
+    value = ["${aws_instance.dev.*.public_ip}"]
+}
+
+Se desde o inicio da criação, for gerado output com o IP publico, podemos pegar novamente o ip das instâncias rodando:
+
+$terraform output
 
 
 Próximos projetos:
